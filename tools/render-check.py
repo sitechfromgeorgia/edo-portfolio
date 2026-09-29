@@ -16,7 +16,7 @@ CHROME = "/root/.cache/ms-playwright/chromium-1217/chrome-linux64/chrome"
 PAGE = pathlib.Path("index.html").resolve().as_uri()
 OUT = pathlib.Path("evidence")
 OUT.mkdir(exist_ok=True)
-WIDTHS = [390, 720, 768, 980, 1280, 1440]
+WIDTHS = [390, 720, 768, 820, 980, 1280, 1440]
 
 PROBE = """() => {
   const doc = document.documentElement;
