@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alliance Group-ისთვის · AI დანერგვის შეთავაზება · SiTech Agency</title>
+<meta name="description" content="Alliance Group-ისთვის: ახალი ენერგია და ხელოვნური ინტელექტი">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#0A1020">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230A1020'/%3E%3Cpath d='M9 23V9h3.4l5.1 8.6V9H21v14h-3.4L12.4 14v9z' fill='%23F0B24C'/%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F6F7F9;
+  --surface:#FFFFFF;
+  --band:#0A1020;
+  --ink:#0A1020;
+  --ink-soft:#333C52;
+  --mute:#616B82;
+  --accent:#1D4ED8;
+  --rule:#DCE1E9;
+  --rule-ink:rgba(255,255,255,.18);
+  --on-band:#EAEEF6;
+  --on-band-soft:#B9C2D4;
+  --on-band-num:#F0B24C;
+  --sans:system-ui,-apple-system,'Segoe UI','Noto Sans Georgian','Sylfaen','Helvetica Neue',Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'DejaVu Sans Mono',monospace;
+  --pad:20px; --maxw:1200px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:1.0625rem;line-height:1.7;font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.band-ink :focus-visible{outline-color:var(--on-band-num)}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:16px;top:0;transform:translateY(-140%);z-index:9;background:var(--band);
+  color:var(--surface);border:1px solid var(--surface);padding:10px 16px;text-decoration:none}
+.skip:focus{transform:translateY(12px)}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+
+/* ---------- cover ---------- */
+.cover{background-color:var(--band);color:var(--on-band);padding-block:34px 44px;
+  background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.055) 0 1px,transparent 1px 120px)}
+.meta{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:baseline;
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;color:var(--on-band-soft);
+  border-bottom:1px solid var(--rule-ink);padding-bottom:14px}
+.meta .tag{color:var(--on-band-num)}
+h1{font-size:clamp(2.125rem,7.6vw,4.25rem);line-height:1.14;font-weight:600;
+  letter-spacing:normal;margin-top:30px;max-width:22ch;overflow-wrap:anywhere}
+.sub{font-size:clamp(1.125rem,2.9vw,1.625rem);line-height:1.45;font-weight:500;
+  color:var(--on-band);margin-top:14px;max-width:32ch;overflow-wrap:anywhere}
+.figures{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 24px;margin-top:34px}
+.fig{border-top:1px solid var(--rule-ink);padding-top:12px;min-width:0}
+.fig .num{display:block;font-family:var(--mono);font-size:clamp(1.375rem,4.2vw,1.875rem);
+  line-height:1.15;font-weight:600;color:var(--on-band-num);font-variant-numeric:tabular-nums}
+.fig-plain .unit{color:var(--on-band);margin-top:0}
+.fig .unit{display:block;font-size:.9375rem;line-height:1.62;color:var(--on-band-soft);
+  margin-top:4px;overflow-wrap:anywhere}
+.thesis{border-top:1px solid var(--rule-ink);margin-top:38px;padding-top:26px}
+.quote{font-size:clamp(1.0625rem,2.5vw,1.4375rem);line-height:1.62;color:var(--on-band);
+  max-width:54ch;text-wrap:pretty}
+.quote + .quote{margin-top:12px}
+.sig{margin-top:18px;font-size:.9375rem;line-height:1.65;color:var(--on-band-soft)}
+.sig b{color:var(--on-band);font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border:1px solid var(--rule-ink);
+  border-radius:2px;font-size:1rem;line-height:1.25;font-weight:600;text-decoration:none}
+.btn-primary{background:var(--on-band-num);border-color:var(--on-band-num);color:var(--band)}
+.btn-ghost{color:var(--on-band)}
+.btn .arw{font-family:var(--mono);font-weight:400}
+
+/* ---------- contents ---------- */
+.toc{background:var(--surface);border-bottom:1px solid var(--rule)}
+.toc ul{display:grid;grid-template-columns:1fr;gap:1px;background:var(--rule)}
+.toc li{background:var(--surface);min-width:0}
+.toc a{display:flex;gap:14px;align-items:baseline;padding:15px 18px;color:var(--ink);
+  text-decoration:none;font-size:.9375rem;line-height:1.62;overflow-wrap:anywhere}
+.toc a:hover{background:#EEF1F6}
+.toc .n{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--accent);flex:0 0 auto}
+
+/* ---------- sections ---------- */
+.sec{padding-block:46px;border-top:1px solid var(--rule)}
+.sec-head{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:baseline;justify-content:space-between}
+h2{font-size:clamp(1.5rem,3.5vw,2.25rem);line-height:1.2;font-weight:600;max-width:30ch;overflow-wrap:anywhere}
+.mark{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--mute);flex:0 0 auto}
+.lead{font-size:1.0625rem;line-height:1.65;color:var(--ink-soft);margin-top:16px;max-width:58ch}
+.items{display:grid;grid-template-columns:1fr;gap:1px;background:var(--rule);
+  border:1px solid var(--rule);margin-top:26px}
+.items > li{background:var(--paper);padding:20px 18px 22px;min-width:0}
+.ix{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--accent);
+  font-variant-numeric:tabular-nums}
+h3{font-size:1.0625rem;line-height:1.45;font-weight:600;margin-top:8px;overflow-wrap:anywhere}
+.items p,.claims p,.steps p,.next p{margin-top:8px;color:var(--ink-soft);font-size:.9688rem;
+  line-height:1.72;overflow-wrap:anywhere;max-width:52ch}
+.steps{display:grid;grid-template-columns:1fr;gap:26px;margin-top:30px}
+.step{min-width:0;border-top:1px solid var(--rule);padding-top:16px}
+.step::before{content:'';display:block;width:10px;height:10px;background:var(--accent);margin-bottom:14px}
+.step .label{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;color:var(--mute);
+  font-variant-numeric:tabular-nums}
+.step h3{margin-top:6px}
+.claims{display:grid;grid-template-columns:1fr;gap:1px;background:var(--rule);
+  border-block:1px solid var(--rule);margin-top:26px}
+.claims > li{background:var(--paper);padding:22px 18px 24px;min-width:0;border-left:2px solid var(--accent)}
+.claims p + p{margin-top:8px}
+.portfolio{margin-top:30px;border-top:1px solid var(--rule);padding-top:20px}
+.portfolio .lbl{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--mute);
+  display:block;margin-bottom:8px}
+.portfolio a{font-family:var(--mono);font-size:clamp(1.125rem,3.6vw,1.625rem);line-height:1.3;
+  font-weight:600;overflow-wrap:anywhere}
+.qs{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:24px}
+.qs li{background:var(--paper);padding:20px 18px;min-width:0;display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:14px;align-items:baseline}
+.qs li::before{content:'?';font-family:var(--mono);font-size:1.125rem;line-height:1;
+  color:var(--accent);font-weight:600}
+.qs span{font-size:clamp(1.0625rem,2.3vw,1.25rem);line-height:1.65;overflow-wrap:anywhere}
+
+/* ---------- contact + footer ---------- */
+.band-ink{background-color:var(--band);color:var(--on-band);padding-block:48px 40px;
+  background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.055) 0 1px,transparent 1px 120px)}
+.band-ink h2{color:var(--on-band)}
+.band-ink .mark{color:var(--on-band-soft)}
+.mail{display:inline-block;margin-top:22px;font-size:clamp(1.375rem,5.2vw,2.25rem);line-height:1.25;
+  font-weight:600;color:var(--on-band);text-decoration-color:var(--on-band-num);
+  text-decoration-thickness:2px;text-underline-offset:8px;overflow-wrap:anywhere}
+.mail:hover{color:var(--on-band-num)}
+.cmeta{margin-top:26px;border-top:1px solid var(--rule-ink);padding-top:18px;display:grid;
+  grid-template-columns:1fr;gap:12px;font-size:.9375rem;line-height:1.62;color:var(--on-band-soft)}
+.cmeta a{font-family:var(--mono);font-size:.875rem;color:var(--on-band)}
+footer{padding-block:24px 42px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;
+  color:var(--mute);font-size:.8125rem;line-height:1.62}
+footer span{font-family:var(--mono);overflow-wrap:anywhere}
+
+@media (min-width:640px){
+  .figures{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .items{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .qs li{padding:22px 22px}
+}
+@media (min-width:768px){
+  :root{--pad:36px}
+  body{font-size:1.0938rem}
+  .cover{padding-block:44px 56px}
+  .sec{padding-block:62px}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .toc ul{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cmeta{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px}
+}
+@media (min-width:1000px){
+  :root{--pad:48px}
+  .cover{padding-block:52px 66px}
+  .sec{padding-block:74px}
+  .figures{grid-template-columns:repeat(5,minmax(0,1fr));gap:0 22px}
+  .steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .claims{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .toc ul{grid-template-columns:repeat(3,minmax(0,1fr))}
+  h1{max-width:18ch}
+}
+@media (prefers-reduced-motion: no-preference){
+  .reveal{opacity:0;animation:rise .4s cubic-bezier(.22,1,.36,1) forwards;animation-delay:calc(var(--d,0) * 60ms)}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  a,.btn{transition:color .16s ease,background-color .16s ease,text-decoration-thickness .16s ease}
+  .toc a{transition:background-color .16s ease}
+}
+@media print{
+  .cover,.band-ink{background-image:none;background-color:#fff;color:#000}
+  h1,.sub,.quote,.sig,.fig .num,.fig .unit,.sig b{color:#000}
+  .btn,.mail,.cmeta a{color:#000;border-color:#000}
+  :root{--pad:0px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">მთავარ შიგთავსზე გადასვლა</a>
+
+<header class="cover">
+  <div class="wrap">
+    <p class="meta"><span class="tag">PROPOSAL</span><span>Alliance Group</span><span>alliance.sitech.ge</span><span>2026</span></p>
+    <h1>Alliance Group-ისთვის</h1>
+    <p class="sub">ახალი ენერგია და ხელოვნური ინტელექტი</p>
+    <ul class="figures">
+      <li class="fig"><span class="num">4</span><span class="unit">პროექტი</span></li>
+      <li class="fig"><span class="num">$2</span><span class="unit">მლრდ ინვესტიცია</span></li>
+      <li class="fig"><span class="num">2 232 000</span><span class="unit">მ²</span></li>
+      <li class="fig"><span class="num">15 000</span><span class="unit">აპარტამენტი</span></li>
+      <li class="fig fig-plain"><span class="unit">ბათუმი, თბილისი, ქობულეთი</span></li>
+    </ul>
+    <figure class="thesis">
+      <p class="quote">„თქვენ ააშენეთ ის, რასაც სხვები ჯერ კიდევ ხაზავენ. ასეთ მასშტაბზე ყოველი დღე ათასობით წვრილ, ხელით საკეთებელ საქმეს ნიშნავს - და სწორედ იქ იკარგება დრო, ლიდები და შესაძლებლობები.</p>
+      <p class="quote">ეს გვერდი იმაზეა, თუ როგორ ვაქცევ ამას ავტომატურ, გაზომვად სისტემად.“</p>
+      <figcaption class="sig"><b>ედო მჟავანაძე</b> · დამფუძნებელი, SiTech Agency</figcaption>
+    </figure>
+    <p class="actions">
+      <a class="btn btn-primary" href="#offer">ექვსი მიმართულება <span class="arw" aria-hidden="true">↓</span></a>
+      <a class="btn btn-ghost" href="#next">პირველი ნაბიჯი</a>
+    </p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="გვერდის სექციები">
+  <div class="wrap">
+    <ul>
+      <li><a href="#position"><span class="n">01</span><span>რას ვხედავ გარედან</span></a></li>
+      <li><a href="#offer"><span class="n">02</span><span>შეთავაზება: ექვსი მიმართულება</span></a></li>
+      <li><a href="#rollout"><span class="n">03</span><span>როგორ დავნერგავ: 90 დღე</span></a></li>
+      <li><a href="#why"><span class="n">04</span><span>რატომ მე</span></a></li>
+      <li><a href="#next"><span class="n">05</span><span>პირველი ნაბიჯი</span></a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+
+  <section class="sec wrap reveal" id="position" aria-labelledby="position-h" style="--d:0">
+    <div class="sec-head"><h2 id="position-h">რას ვხედავ გარედან</h2><span class="mark">01 / POSITION</span></div>
+    <p class="lead">სად იკარგება დრო დღეს</p>
+    <ul class="items">
+      <li><p class="ix">01</p><h3>ლიდების ნაკადი</h3>
+        <p>4 პროექტი, 3 ქალაქი, 15 000 აპარტამენტი. ყოველი მოთხოვნა ხელით კვალიფიცირდება: ვინ არის, რა ბიუჯეტი, როდის, რომელი პროექტი. დღის ბოლოს ნაწილი უპასუხოდ რჩება და ეს ნაწილი კონკურენტთან მიდის.</p></li>
+      <li><p class="ix">02</p><h3>პასუხის სიჩქარე</h3>
+        <p>ინვესტორი პასუხს წუთებში ელის, არა სამუშაო საათებში. ღამის 23:00-ზე მოსული კითხვა დილამდე ცივდება.</p></li>
+      <li><p class="ix">03</p><h3>დოკუმენტების მთა</h3>
+        <p>კონტრაქტები, აქტები, ტექნიკური დოკუმენტაცია, 20 წლის არქივი. ცოდნა არსებობს, მაგრამ არ არის ერთ ადგილას მოძებნადი.</p></li>
+      <li><p class="ix">04</p><h3>სტუმრის გამოცდილება</h3>
+        <p>Hyatt Centric-ის დონის სერვისზე კითხვები არ სრულდება რეცეპშენით: სერვისები, ტრანსფერი, ტურები, სპა, შეკითხვები ღამის საათებში.</p></li>
+      <li><p class="ix">05</p><h3>მიმოხილვები და რეპუტაცია</h3>
+        <p>Booking-ისა და Google-ის შეფასებები ხელით არ იკითხება. პრობლემა ხშირად მაშინ ჩანს, როცა რეიტინგი უკვე დაეცა.</p></li>
+      <li><p class="ix">06</p><h3>მენეჯმენტის ხედვა</h3>
+        <p>რამდენი ლიდი მოვიდა, საიდან, რა ეტაპზე გაჩერდა, რომელი გაყიდვების ოფისი უფრო ეფექტურია - ამ კითხვებზე პასუხი ცხრილებშია გაფანტული.</p></li>
+    </ul>
+  </section>
+
+  <section class="sec wrap reveal" id="offer" aria-labelledby="offer-h" style="--d:0">
+    <div class="sec-head"><h2 id="offer-h">შეთავაზება: ექვსი მიმართულება</h2><span class="mark">02 / OFFER</span></div>
+    <ul class="items">
+      <li><p class="ix">01</p><h3>გაყიდვების AI ასისტენტი</h3>
+        <p>ლიდი შემოდის ნებისმიერ დროს, ნებისმიერ არხიდან - და პასუხს წამებში იღებს ქართულად თუ ინგლისურად. ასისტენტი არკვევს ბიუჯეტს, პროექტს, ვადას, აწესრიგებს პრიორიტეტს და გადასცემს გაყიდვების გუნდს უკვე მომზადებულს. ცხელი ლიდი აღარ იკარგება ღამის ცვლაში.</p></li>
+      <li><p class="ix">02</p><h3>ინვესტორის პირადი ასისტენტი 24/7</h3>
+        <p>პროექტის, ფასების, ხელმისაწვდომი აპარტამენტებისა და გადახდის პირობების კითხვებზე პასუხი რეალურ მონაცემებზე დაყრდნობით - არა ზოგადი ტექსტი, არამედ ის, რაც სისტემაში ნამდვილად წერია. ინვესტორს არ სჭირდება ოფისის დაკავება.</p></li>
+      <li><p class="ix">03</p><h3>დოკუმენტების ჭკვიანი დამუშავება</h3>
+        <p>კონტრაქტი, აქტი, ტექნიკური დოკუმენტი ან ანგარიში გადის სისტემაში და ბრუნდება სტრუქტურირებული მონაცემებით: მხარეები, თანხები, ვადები, ვალდებულებები. ძებნა ხდება არა ფაილების სახელით, არამედ შინაარსით.</p></li>
+      <li><p class="ix">04</p><h3>კომპანიის ცოდნის ბაზა</h3>
+        <p>20 წლის გამოცდილება ერთ ადგილას: „როგორ მუშაობდა ეს კვანძი?“, „რა ვისწავლეთ ამ პროექტიდან?“, „ვინ იცის ამ საკითხზე?“. ახალი თანამშრომელი სწავლას კვირებში კი არა, დღეებში იწყებს.</p></li>
+      <li><p class="ix">05</p><h3>სტუმრის გამოცდილება და რეპუტაცია</h3>
+        <p>მრავალენოვანი კონსიერჟი სტუმრისთვის, და მიმოხილვების ავტომატური ანალიზი მენეჯმენტისთვის: რა აქებენ, რაზე ჩივიან, რომელი პრობლემა მეორდება. პრობლემა ჩანს მანამ, სანამ ის რეიტინგზე აისახება.</p></li>
+      <li><p class="ix">06</p><h3>მარკეტინგი და მენეჯმენტის დაფები</h3>
+        <p>პროექტების გვერდები, კონტენტი, ძიების ხილვადობა, კამპანიების ლიდები - და ერთი დაფა, სადაც ჩანს რამდენი მოვიდა, საიდან, რა ეტაპზე გაჩერდა და რა ღირს ერთი გაყიდვა.</p></li>
+    </ul>
+  </section>
+
+  <section class="sec wrap reveal" id="rollout" aria-labelledby="rollout-h" style="--d:0">
+    <div class="sec-head"><h2 id="rollout-h">როგორ დავნერგავ: 90 დღე</h2><span class="mark">03 / ROLLOUT</span></div>
+    <ol class="steps">
+      <li class="step"><p class="label">კვირა 1</p><h3>აუდიტი</h3>
+        <p>ვჯდები თქვენს გუნდთან, ვუყურებ რეალურ პროცესებს და ვადგენ, სად იკარგება ყველაზე მეტი დრო და ფული. შედეგი: პრიორიტეტების სია, არა ანგარიში მაგიდაზე.</p></li>
+      <li class="step"><p class="label">კვირა 2-4</p><h3>პილოტი</h3>
+        <p>ერთი პროცესი, ერთი გაზომვადი შედეგი - მაგალითად, ლიდების პასუხის დრო ან ხელით შესრულებული სამუშაოს რაოდენობა. ვხვდებით ციფრებზე და მხოლოდ შემდეგ ვაფართოებთ.</p></li>
+      <li class="step"><p class="label">თვე 2</p><h3>სისტემების დაკავშირება</h3>
+        <p>AI ფენა უკავშირდება იმას, რაც უკვე მუშაობს: საიტი, CRM, LIVE მონაცემები, შიდა ბაზები. თქვენი სისტემები არ იცვლება - მათ თავზე ეშენება.</p></li>
+      <li class="step"><p class="label">თვე 3</p><h3>ყოველდღიური ოპერაციები</h3>
+        <p>დანერგვა გუნდში, მენეჯმენტის დაფები, ტრენინგი და მხარდაჭერა. თქვენი ადამიანები სისტემასთან მუშაობას სწავლობენ, არა პირიქით.</p></li>
+    </ol>
+  </section>
+
+  <section class="sec wrap reveal" id="why" aria-labelledby="why-h" style="--d:0">
+    <div class="sec-head"><h2 id="why-h">რატომ მე</h2><span class="mark">04 / WHY ME</span></div>
+    <ul class="claims">
+      <li><h3>ვაშენებ და არა ვყიდი იდეას.</h3><p>130-ზე მეტი ვებ-პროექტი, 21 აქტიური დომენი, 180-ზე მეტი კოდის რეპოზიტორი - ყველა ცოცხალი და გადამოწმებადი. ბმული ქვემოთ.</p></li>
+      <li><h3>მყავს AI გუნდი, რომელიც 24/7 მუშაობს.</h3><p>მე ვაკოორდინირებ სპეციალიზებულ აგენტებს: კვლევა, დიზაინი, კოდი, ტესტირება. სწორედ ამიტომ მოგაქვთ პროდუქტი დღეებში და არა კვარტლებში.</p></li>
+      <li><h3>ვარ ადგილობრივი.</h3><p>ბათუმში ვცხოვრობ და ვმუშაობ. შეხვედრა - დღეს, ოფისში, არა ონლაინ კალენდრით ორ კვირაში.</p></li>
+      <li><h3>ყველაფრის ცოდნას არ ვამტკიცებ.</h3><p>ჩემი ძლიერი მხარეა უცნობ ამოცანაში გარკვევა, სწორი ინსტრუმენტების შერჩევა და იდეის მოქმედ პროდუქტამდე მიყვანა. ამას ვაკეთებ ჩემი AI გუნდის დახმარებით.</p></li>
+    </ul>
+    <p class="portfolio"><span class="lbl">პორტფოლიო</span>
+      <a href="https://edo.sitech.ge" target="_blank" rel="noopener noreferrer">https://edo.sitech.ge<span class="sr"> (ახალი ფანჯარა)</span></a></p>
+  </section>
+
+  <section class="sec wrap reveal" id="next" aria-labelledby="next-h" style="--d:0">
+    <div class="sec-head"><h2 id="next-h">პირველი ნაბიჯი</h2><span class="mark">05 / FIRST STEP</span></div>
+    <h3>30 წუთი, ორი კითხვით:</h3>
+    <ul class="qs">
+      <li><span>სად იკარგება ყველაზე მეტი დრო?</span></li>
+      <li><span>რომელი პროცესი გინდათ, სამ თვეში სხვანაირად მუშაობდეს?</span></li>
+    </ul>
+    <p>პასუხებზე გაჩვენებთ, როგორ გამოიყურება ეს რეალურ სისტემად - დემოთი, არა სლაიდებით.</p>
+  </section>
+
+  <section class="band-ink" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="contact-h">SiTech Agency</h2><span class="mark">06 / CONTACT</span></div>
+      <a class="mail" href="mailto:hello@sitech.ge">hello@sitech.ge</a>
+      <div class="cmeta">
+        <div>ბათუმი</div>
+        <div><a href="https://sitech.ge" target="_blank" rel="noopener noreferrer">https://sitech.ge<span class="sr"> (ახალი ფანჯარა)</span></a></div>
+        <div>ედო მჟავანაძე · SiTech Agency</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>alliance.sitech.ge</span>
+  <span>ედო მჟავანაძე · SiTech Agency · ბათუმი</span>
+  <span>2026</span>
+</footer>
+</body>
+</html>
