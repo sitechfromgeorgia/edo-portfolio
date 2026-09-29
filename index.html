@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ედო მჟავანაძე · დამფუძნებელი და ტექნიკური ხელმძღვანელი · SiTech Agency</title>
+<meta name="description" content="ვაშენებ ვებ-პროდუქტებს იდეიდან ლაივ-სერვისამდე: დიზაინი, კოდი, ინტეგრაციები და განთავსება.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#17140F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317140F'/%3E%3Crect x='7' y='9' width='18' height='2' fill='%23E9A23B'/%3E%3Crect x='7' y='15' width='18' height='2' fill='%23FAF7F2'/%3E%3Crect x='7' y='21' width='18' height='2' fill='%236E675C'/%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#FAF7F2;
+  --ink:#17140F;
+  --ink-soft:#4B453C;
+  --ink-mute:#6E675C;
+  --accent:#A34700;
+  --amber:#E9A23B;
+  --link:#1D4ED8;
+  --rule:#E3DCD1;
+  --rule-ink:rgba(250,247,242,.22);
+  --sans:system-ui,-apple-system,"Segoe UI","Noto Sans Georgian","Sylfaen","Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"DejaVu Sans Mono",monospace;
+  --pad:20px;
+  --maxw:1180px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:1.0625rem;
+  line-height:1.68;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img,svg{max-width:100%;height:auto}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:2px}
+.band :focus-visible,.masthead :focus-visible{outline-color:var(--amber)}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:16px;top:0;transform:translateY(-140%);z-index:9;background:var(--paper);color:var(--ink);border:1px solid var(--ink);padding:10px 16px;text-decoration:none}
+.skip:focus{transform:translateY(12px)}
+
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+.masthead{
+  background-color:var(--ink);
+  color:var(--paper);
+  background-image:repeating-linear-gradient(90deg,rgba(250,247,242,.055) 0 1px,transparent 1px 96px);
+  padding-block:56px 48px;
+}
+.meta-line{
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.09em;
+  color:#CFC7B8;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;
+  border-bottom:1px solid var(--rule-ink);padding-bottom:14px;
+}
+.meta-line span:first-child{color:var(--amber)}
+h1{
+  font-size:clamp(2.5rem,8.5vw,5rem);
+  line-height:1.14;font-weight:600;margin-top:34px;
+  letter-spacing:normal;
+}
+.role{font-size:1.0625rem;line-height:1.62;color:#CFC7B8;margin-top:16px;max-width:44ch}
+.role b{color:var(--amber);font-weight:600}
+.lede{font-size:clamp(1.125rem,2.6vw,1.375rem);line-height:1.58;color:var(--paper);margin-top:22px;max-width:34ch;font-weight:400}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 22px;
+  border:1px solid var(--rule-ink);border-radius:2px;
+  font-size:1rem;line-height:1.2;text-decoration:none;font-weight:600;
+}
+.btn-primary{background:var(--amber);border-color:var(--amber);color:var(--ink)}
+.btn-ghost{color:var(--paper)}
+.btn .arw{font-family:var(--mono);font-weight:400}
+
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule)}
+.stat{background:var(--paper);padding:22px 16px 26px;min-width:0}
+.num{font-family:var(--mono);font-size:clamp(1.75rem,5vw,2.5rem);line-height:1.1;font-weight:600;font-variant-numeric:tabular-nums;display:block}
+.stat .unit{display:block;font-size:.9375rem;line-height:1.5;color:var(--ink-soft);margin-top:6px;max-width:26ch;overflow-wrap:anywhere}
+
+section{padding-block:56px}
+.sec-head{border-top:1px solid var(--rule);padding-top:18px;display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;justify-content:space-between}
+h2{font-size:clamp(1.75rem,4.2vw,2.75rem);line-height:1.16;font-weight:600}
+.mark{font-family:var(--mono);font-size:.75rem;letter-spacing:.09em;color:var(--ink-mute)}
+.about p{max-width:62ch;margin-top:24px;color:var(--ink-soft)}
+.about .first{font-size:1.1875rem;line-height:1.62;color:var(--ink)}
+
+.index{border-top:1px solid var(--rule);margin-top:28px}
+.proj{border-bottom:1px solid var(--rule);padding-block:26px}
+.proj-in{display:grid;gap:10px}
+.pn{font-family:var(--mono);font-size:.8125rem;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.6}
+h3{font-size:1.25rem;line-height:1.32;font-weight:600;overflow-wrap:anywhere}
+.pbody{margin-top:4px}
+.pbody p{color:var(--ink-soft);max-width:64ch;overflow-wrap:anywhere}
+.pbody p + p{margin-top:10px}
+.lbl{font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;color:var(--ink-mute);margin-right:8px}
+.plink{margin-top:14px;font-size:.9375rem}
+.plink a{font-family:var(--mono);font-size:.875rem;overflow-wrap:anywhere}
+.clinks{color:var(--ink-soft);overflow-wrap:anywhere}
+.clinks a{font-family:var(--mono);font-size:.875rem}
+
+.steps{display:grid;gap:1px;background:var(--rule);margin-top:28px}
+.step{background:var(--paper);padding:20px 18px 24px;min-width:0}
+.step .sn{font-family:var(--mono);font-size:.75rem;letter-spacing:.09em;color:var(--accent)}
+.step h3{font-size:1.0625rem;line-height:1.45;margin:8px 0 6px}
+.step p{font-size:.9375rem;line-height:1.62;color:var(--ink-soft);overflow-wrap:anywhere}
+
+.skills{margin-top:28px;display:grid;gap:26px}
+.skills h3{font-size:.8125rem;font-family:var(--mono);font-weight:500;letter-spacing:.09em;color:var(--ink-mute)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips li{border:1px solid var(--rule);border-radius:2px;padding:6px 12px;font-size:.9375rem;line-height:1.5;color:var(--ink-soft);background:#FDFBF8;overflow-wrap:anywhere}
+
+.band{
+  background-color:var(--ink);color:var(--paper);
+  background-image:repeating-linear-gradient(90deg,rgba(250,247,242,.055) 0 1px,transparent 1px 96px);
+  padding-block:56px 40px;
+}
+.band h2{color:var(--paper)}
+.band .sec-head{border-top-color:var(--rule-ink)}
+.band .mark{color:#CFC7B8}
+.mail{
+  display:inline-block;margin-top:24px;
+  font-size:clamp(1.375rem,5.4vw,2.5rem);line-height:1.24;font-weight:600;
+  color:var(--paper);text-decoration-color:var(--amber);text-decoration-thickness:2px;text-underline-offset:8px;
+  overflow-wrap:anywhere;
+}
+.mail:hover{color:var(--amber)}
+.cmeta{margin-top:34px;border-top:1px solid var(--rule-ink);padding-top:18px;display:grid;gap:16px}
+.cmeta div{font-size:1rem}
+.cmeta .lbl{color:#CFC7B8}
+.cmeta a{font-family:var(--mono);font-size:.875rem;color:var(--amber)}
+footer{padding-block:26px 40px;color:var(--ink-mute);font-size:.8125rem;line-height:1.6;display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between}
+footer span{font-family:var(--mono)}
+
+@media (min-width:720px){
+  .stats{grid-template-columns:repeat(4,1fr)}
+  .stat{padding:26px 20px 30px}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .skills{grid-template-columns:1.6fr 1fr}
+}
+@media (min-width:768px){
+  :root{--pad:40px}
+  body{font-size:1.125rem}
+  .masthead{padding-block:76px 68px}
+  section{padding-block:76px}
+  .cmeta{grid-template-columns:repeat(3,1fr)}
+}
+@media (min-width:980px){
+  .steps{grid-template-columns:repeat(5,1fr)}
+  .proj{padding-block:30px}
+  .proj-in{grid-template-columns:64px minmax(0,300px) minmax(0,1fr);gap:8px 34px;align-items:start}
+  .pn{padding-top:5px}
+  .pbody{margin-top:0}
+}
+@media (min-width:1280px){
+  :root{--pad:56px}
+  .masthead{padding-block:92px 80px}
+  section{padding-block:92px}
+  .step{padding:24px 22px 30px}
+}
+@media (prefers-reduced-motion: no-preference){
+  .reveal{opacity:0;animation:rise .42s cubic-bezier(.22,1,.36,1) forwards;animation-delay:calc(var(--d,0) * 70ms)}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  a,.btn{transition:color .16s ease,background-color .16s ease,text-decoration-thickness .16s ease}
+  .proj{transition:background-color .16s ease}
+  .proj:hover{background-color:#F4EFE7}
+}
+@media print{
+  .masthead,.band{background-image:none;background-color:#fff;color:#000}
+  .masthead,.band,.stat,.step,.chips li{background:#fff;color:#000}
+  .lede,.role,.band h2,.mark,.stat .unit{color:#000}
+  .btn{border-color:#000;color:#000}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">მთავარ შიგთავსზე გადასვლა</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="meta-line"><span>PORTFOLIO</span><span>ბათუმი · საქართველო</span></p>
+    <h1>ედო მჟავანაძე</h1>
+    <p class="role">დამფუძნებელი და ტექნიკური ხელმძღვანელი · <b>SiTech Agency</b> · ბათუმი</p>
+    <p class="lede">ვაშენებ ვებ-პროდუქტებს იდეიდან ლაივ-სერვისამდე: დიზაინი, კოდი, ინტეგრაციები და განთავსება.</p>
+    <p class="actions">
+      <a class="btn btn-primary" href="#projects">პროექტების ნახვა <span class="arw" aria-hidden="true">↓</span></a>
+      <a class="btn btn-ghost" href="#contact">დაკავშირება</a>
+    </p>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="wrap">
+    <ul class="stats" aria-label="რიცხვები">
+      <li class="stat"><span class="num">130+</span> <span class="unit">ვებ-პროექტი Cloudflare-ზე</span></li>
+      <li class="stat"><span class="num">21</span> <span class="unit">აქტიური დომენი</span></li>
+      <li class="stat"><span class="num">180+</span> <span class="unit">კოდის რეპოზიტორი</span></li>
+      <li class="stat"><span class="num">6</span> <span class="unit">წელი ვებ-დეველოპმენტში</span></li>
+    </ul>
+  </div>
+
+  <section class="about wrap reveal" id="about" aria-labelledby="about-h" style="--d:0">
+    <div class="sec-head"><h2 id="about-h">ჩემ შესახებ</h2><span class="mark">ABOUT</span></div>
+    <p class="first">ბათუმში ვმუშაობ და ვმართავ SiTech Agency-ს, სადაც იდეიდან გაშვებულ პროდუქტამდე მთელ გზას თვითონ გავდივარ: ვსაუბრობ კლიენტთან, ვადგენ რა არის რეალურად საჭირო, ვაწყობ დიზაინს, ვწერ და ვაერთიანებ კოდს, შემდეგ კი ვაშვებ და ვაკვირდები როგორ მუშაობს.</p>
+    <p>დღეს ჩემი საქმის ნაწილი ხელოვნური ინტელექტის აგენტებთან ერთად მუშაობაა. მათ მიზანს ვაძლევ, ამოწმებ შედეგს და ვწყვეტ რა რჩება პროდუქტში. ეს მიდგომა მაძლევს საშუალებას ერთი ადამიანით ვმართო ის მოცულობა, რასაც ჩვეულებრივ პატარა გუნდი სჭირდება.</p>
+    <p>მთავარი, რასაც ვეყრდნობი: პრობლემის გაგება, სწორი ინსტრუმენტის შერჩევა და შედეგის შემოწმება. კონკრეტული ტექნოლოგია ამას მოჰყვება.</p>
+  </section>
+
+  <section class="wrap reveal" id="projects" aria-labelledby="projects-h" style="--d:1">
+    <div class="sec-head"><h2 id="projects-h">პროექტები</h2><span class="mark">INDEX 01-09</span></div>
+
+    <div class="index">
+      <article class="proj">
+        <div class="proj-in">
+          <p class="pn">01</p>
+          <h3>tbilisi.today</h3>
+          <div class="pbody">
+            <p><span class="lbl">რა არის:</span> ქართული საინფორმაციო პლატფორმა, რომელიც ახალ ამბებს ავტომატურად აგროვებს, ამუშავებს და აქვეყნებს.</p>
+            <p><span class="lbl">ჩემი როლი:</span> არქიტექტურა, მონაცემთა მილსადენი, გამოქვეყნების სისტემა და მთელი ტექნიკური მხარე.</p>
+            <p><span class="lbl">რას ნიშნავს:</span> ყველაზე დიდი პროექტი მოცულობით: მონაცემების შეგროვება, დამუშავება, ინდექსირება და პუბლიკაცია ერთ სისტემაში.</p>
+            <p class="plink"><span class="lbl">ბმული:</span> <a href="https://tbilisi.today" target="_blank" rel="noopener noreferrer">https://tbilisi.today<span class="sr"> (ახალი ფანჯარა)</span></a></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-in">
+          <p class="pn">02</p>
+          <h3>sitech.ge</h3>
+          <div class="pbody">
+            <p><span class="lbl">რა არის:</span> ჩვენივე სააგენტოს საიტი და პროდუქტების კარიბჭე.</p>
+            <p><span class="lbl">ჩემი როლი:</span> დიზაინი, შენობა, განთავსება და მუდმივი განვითარება.</p>
+            <p class="plink"><span class="lbl">ბმული:</span> <a href="https://sitech.ge" target="_blank" rel="noopener noreferrer">https://sitech.ge<span class="sr"> (ახალი ფანჯარა)</span></a></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-in">
+          <p class="pn">03</p>
+          <h3>POINT (pointrange.ge)</h3>
+          <div class="pbody">
+            <p><span class="lbl">რა არის:</span> სასროლეთის ჯავშნისა და მომხმარებლის მართვის პლატფორმა: ჯავშანი, რეცეფცია, ლოიალობის ბალანსი, ადმინის პანელი.</p>
+            <p><span class="lbl">ჩემი როლი:</span> სრული პროდუქტის მშენებლობა მოთხოვნიდან ჩაბარებამდე.</p>
+            <p class="plink"><span class="lbl">ბმული:</span> <a href="https://pointrange.ge" target="_blank" rel="noopener noreferrer">https://pointrange.ge<span class="sr"> (ახალი ფანჯარა)</span></a></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-in">
+          <p class="pn">04</p>
+          <h3>Staffer (staffer.live)</h3>
+          <div class="pbody">
+            <p><span class="lbl">რა არის:</span> თანამშრომლების მართვის პლატფორმა: გრაფიკი, არყოფნა, ხელფასი და შიდა პროცესები.</p>
+            <p><span class="lbl">ჩემი როლი:</span> პროდუქტის არქიტექტურა და განვითარება.</p>
+            <p class="plink"><span class="lbl">ბმული:</span> <a href="https://staffer.live" target="_blank" rel="noopener noreferrer">https://staffer.live<span class="sr"> (ახალი ფანჯარა)</span></a></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-in">
+          <p class="pn">05</p>
+          <h3>InvoiceFlow (invoice.sitech.ge)</h3>
+          <div class="pbody">
+            <p><span class="lbl">რა არის:</span> უფასო ინვოისების გენერატორი მცირე ბიზნესისთვის. PDF, გადახდის ბმული და QR.</p>
+            <p><span class="lbl">ჩემი როლი:</span> იდეა, დიზაინი, განვითარება, გაშვება.</p>
+            <p class="plink"><span class="lbl">ბმული:</span> <a href="https://invoice.sitech.ge" target="_blank" rel="noopener noreferrer">https://invoice.sitech.ge<span class="sr"> (ახალი ფანჯარა)</span></a></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-in">
+          <p class="pn">06</p>
+          <h3>SiChat (sichat.live)</h3>
+          <div class="pbody">
+            <p><span class="lbl">რა არის:</span> ვებ-საიტებისთვის ჩატისა და მომხმარებელთან ურთიერთობის პლატფორმა მართვის პანელით.</p>
+            <p><span class="lbl">ჩემი როლი:</span> სისტემის არქიტექტურა და ინტეგრაციები.</p>
+            <p class="plink"><span class="lbl">ბმული:</span> <a href="https://sichat.live" target="_blank" rel="noopener noreferrer">https://sichat.live<span class="sr"> (ახალი ფანჯარა)</span></a></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-in">
+          <p class="pn">07</p>
+          <h3>Riger (riger.live)</h3>
+          <div class="pbody">
+            <p><span class="lbl">რა არის:</span> ლაივ რიგის მართვის სისტემა: ვიზიტორი დისტანციურად იღებს ნომერს და თვალს ადევნებს რიგს.</p>
+            <p><span class="lbl">ჩემი როლი:</span> განვითარება და განთავსება.</p>
+            <p class="plink"><span class="lbl">ბმული:</span> <a href="https://riger.live" target="_blank" rel="noopener noreferrer">https://riger.live<span class="sr"> (ახალი ფანჯარა)</span></a></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-in">
+          <p class="pn">08</p>
+          <h3>აჭარის ტურიზმის ქსელი</h3>
+          <div class="pbody">
+            <p><span class="lbl">რა არის:</span> 50-ზე მეტი სასტუმროს, გესთჰაუსისა და რესტორნის ვებ-საიტი ერთი რეგიონისთვის.</p>
+            <p><span class="lbl">ჩემი როლი:</span> სტანდარტიზებული შაბლონი, სწრაფი გაშვება და ცენტრალური მართვა.</p>
+            <p><span class="lbl">რას ნიშნავს:</span> ერთი და იმავე ხარისხის გამეორებადი მიწოდება ათეულობით კლიენტისთვის.</p>
+            <p class="plink"><span class="lbl">ბმული:</span> <a href="https://georgiantreasure.ge" target="_blank" rel="noopener noreferrer">https://georgiantreasure.ge<span class="sr"> (ახალი ფანჯარა)</span></a></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-in">
+          <p class="pn">09</p>
+          <h3>კლიენტური ნამუშევრები (შერჩეული)</h3>
+          <div class="pbody">
+            <p class="clinks"><span class="lbl">ბმულები:</span> <a href="https://defendo.ge" target="_blank" rel="noopener noreferrer">https://defendo.ge<span class="sr"> (ახალი ფანჯარა)</span></a> · <a href="https://marilu.ge" target="_blank" rel="noopener noreferrer">https://marilu.ge<span class="sr"> (ახალი ფანჯარა)</span></a> · <a href="https://alfapro.ge" target="_blank" rel="noopener noreferrer">https://alfapro.ge<span class="sr"> (ახალი ფანჯარა)</span></a> · <a href="https://akademikosi.ge" target="_blank" rel="noopener noreferrer">https://akademikosi.ge<span class="sr"> (ახალი ფანჯარა)</span></a> · <a href="https://tatafund.ge" target="_blank" rel="noopener noreferrer">https://tatafund.ge<span class="sr"> (ახალი ფანჯარა)</span></a> · <a href="https://caucasusdancebridge.com" target="_blank" rel="noopener noreferrer">https://caucasusdancebridge.com<span class="sr"> (ახალი ფანჯარა)</span></a> · <a href="https://siteach.live" target="_blank" rel="noopener noreferrer">https://siteach.live<span class="sr"> (ახალი ფანჯარა)</span></a> · <a href="https://ashlar.pages.dev" target="_blank" rel="noopener noreferrer">https://ashlar.pages.dev<span class="sr"> (ახალი ფანჯარა)</span></a></p>
+            <p><span class="lbl">ერთი წინადადებით:</span> საიტები, ბრენდინგი და ვებ-პრეზენტაცია სხვადასხვა სფეროსთვის: იურიდიული, სილამაზე, ავტო, კვება, განათლება, ფონდი, კულტურა.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap reveal" id="process" aria-labelledby="process-h" style="--d:2">
+    <div class="sec-head"><h2 id="process-h">როგორ ვმუშაობ</h2><span class="mark">PROCESS 1-5</span></div>
+    <ol class="steps">
+      <li class="step"><h3><span class="sn">1.</span> გაგება</h3><p>რა პრობლემას წყვეტს პროდუქტი და რა არის წარმატების ნიშანი.</p></li>
+      <li class="step"><h3><span class="sn">2.</span> დიზაინი</h3><p>სტრუქტურა და ვიზუალი ჯერ ქაღალდზე, შემდეგ კოდში.</p></li>
+      <li class="step"><h3><span class="sn">3.</span> მშენებლობა</h3><p>ფრონტენდი, ბექენდი, მონაცემთა ბაზა, ინტეგრაციები.</p></li>
+      <li class="step"><h3><span class="sn">4.</span> გაშვება</h3><p>დომენი, სერვერი, მონიტორინგი და მხარდაჭერა.</p></li>
+      <li class="step"><h3><span class="sn">5.</span> განვითარება</h3><p>პროდუქტი გაშვებით არ მთავრდება; ვაკვირდები და ვამატებ რასაც მომხმარებელი ითხოვს.</p></li>
+    </ol>
+  </section>
+
+  <section class="wrap reveal" id="skills" aria-labelledby="skills-h" style="--d:3">
+    <div class="sec-head"><h2 id="skills-h">უნარები</h2><span class="mark">STACK</span></div>
+    <div class="skills">
+      <div>
+        <h3>დარწმუნებით</h3>
+        <ul class="chips">
+          <li>ვებ-პროდუქტის სრული ციკლი (იდეა, დიზაინი, კოდი, გაშვება)</li>
+          <li>JavaScript და React</li>
+          <li>Next.js</li>
+          <li>მონაცემთა ბაზები</li>
+          <li>REST API ინტეგრაციები</li>
+          <li>Linux სერვერები</li>
+          <li>Docker</li>
+          <li>Cloudflare</li>
+          <li>Git</li>
+          <li>ხელოვნური ინტელექტის ინსტრუმენტები პროდუქტის შექმნაში</li>
+        </ul>
+      </div>
+      <div>
+        <h3>ვაღრმავებ</h3>
+        <ul class="chips">
+          <li>PHP / Laravel</li>
+          <li>ტესტირება</li>
+          <li>გუნდური კოდის რევიუ</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="contact-h">დაკავშირება</h2><span class="mark">CONTACT</span></div>
+      <a class="mail" href="mailto:hello@sitech.ge">hello@sitech.ge</a>
+      <div class="cmeta">
+        <div><span class="lbl">ელფოსტა:</span> <a href="mailto:hello@sitech.ge">hello@sitech.ge</a></div>
+        <div><span class="lbl">საიტი:</span> <a href="https://sitech.ge" target="_blank" rel="noopener noreferrer">https://sitech.ge<span class="sr"> (ახალი ფანჯარა)</span></a></div>
+        <div><span class="lbl">მდებარეობა:</span> ბათუმი, საქართველო</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>ედო მჟავანაძე · SiTech Agency · ბათუმი</span>
+  <span>2026</span>
+</footer>
+</body>
+</html>
