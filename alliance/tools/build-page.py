@@ -55,7 +55,7 @@ def parse(content_path: pathlib.Path) -> dict:
         lines = rest.split("\n")
         cut = next((i for i, ln in enumerate(lines) if ln.strip() == "---"), len(lines))
         blocks[int(m.group(1))] = {"title": m.group(2), "lines": lines[:cut]}
-    assert sorted(blocks) == [1, 2, 3, 4, 5, 6], sorted(blocks)
+    assert sorted(blocks) == [1, 2, 3, 4, 5, 6, 7], sorted(blocks)
 
     doc_title = next(ln.lstrip("# ").strip() for ln in head.split("\n") if ln.startswith("# "))
 
@@ -113,11 +113,32 @@ def parse(content_path: pathlib.Path) -> dict:
             steps[-1]["body"].append(ln.strip())
     assert len(steps) == 4, steps
 
-    # ---- block 5: why me ----------------------------------------------------
+    # ---- block 5: how we work together (numbered 5 steps) -------------------
+    b5_lead, steps5, closer5 = None, [], None
+    for ln in blocks[5]["lines"]:
+        s = ln.strip()
+        if not s:
+            continue
+        m = re.match(r"^\*\*(\d+)\.\s*(.+?)\*\*\s*(.*)$", s)
+        if m:
+            steps5.append({"ix": int(m.group(1)), "title": m.group(2).strip(),
+                           "body": m.group(3).strip()})
+            continue
+        bm = BOLD_LEAD.match(s)
+        assert bm, f"unexpected block-5 line: {s!r}"
+        entry = {"lead": bm.group(1).strip(), "body": bm.group(2).strip()}
+        if s.startswith("**მოკლედ"):
+            closer5 = entry
+        else:
+            b5_lead = entry
+    assert b5_lead and closer5, (b5_lead, closer5)
+    assert [s["ix"] for s in steps5] == [1, 2, 3, 4, 5], steps5
+
+    # ---- block 6: why me ----------------------------------------------------
     claims, portfolio = [], None
-    for ln in paragraphs(blocks[5]["lines"]):
+    for ln in paragraphs(blocks[6]["lines"]):
         m = BOLD_LEAD.match(ln)
-        assert m, f"unexpected block-5 line: {ln!r}"
+        assert m, f"unexpected block-6 line: {ln!r}"
         title, body = m.group(1).strip(), m.group(2).strip()
         if re.match(r"^https?://\S+$", body):
             portfolio = {"label": title.rstrip(":"), "url": body}
@@ -125,8 +146,8 @@ def parse(content_path: pathlib.Path) -> dict:
             claims.append({"title": title, "body": body})
     assert len(claims) == 4 and portfolio, (claims, portfolio)
 
-    # ---- block 6: first step + contact -------------------------------------
-    b6 = bullets(blocks[6]["lines"])
+    # ---- block 7: first step + contact -------------------------------------
+    b6 = bullets(blocks[7]["lines"])
     q_title = BOLD_ONLY.match(b6[0]).group(1)
     questions = [ln for ln in b6 if ln.endswith("?")]
     para = next(ln for ln in b6 if not ln.endswith("?") and not ln.startswith("**") and "@" not in ln)
@@ -144,8 +165,9 @@ def parse(content_path: pathlib.Path) -> dict:
         "p2": {"title": blocks[2]["title"], "lead": lead2, "items": items2},
         "p3": {"title": blocks[3]["title"], "items": items3},
         "p4": {"title": blocks[4]["title"], "steps": steps},
-        "p5": {"title": blocks[5]["title"], "claims": claims, "portfolio": portfolio},
-        "p6": {"title": blocks[6]["title"], "q_title": q_title, "questions": questions, "para": para},
+        "p5": {"title": blocks[5]["title"], "lead": b5_lead, "steps": steps5, "closer": closer5},
+        "p6": {"title": blocks[6]["title"], "claims": claims, "portfolio": portfolio},
+        "p7": {"title": blocks[7]["title"], "q_title": q_title, "questions": questions, "para": para},
         "contact": {"name": name, "agency": agency, "city": city, "mail": c_mail, "site": c_site},
     }
 
@@ -249,6 +271,8 @@ h3{font-size:1.0625rem;line-height:1.45;font-weight:600;margin-top:8px;overflow-
   border-block:1px solid var(--rule);margin-top:26px}
 .claims > li{background:var(--paper);padding:22px 18px 24px;min-width:0;border-left:2px solid var(--accent)}
 .claims p + p{margin-top:8px}
+.closer{margin-top:26px;border-top:1px solid var(--rule);padding-top:18px;color:var(--ink-soft);
+  font-size:.9688rem;line-height:1.72;max-width:58ch}
 .portfolio{margin-top:30px;border-top:1px solid var(--rule);padding-top:20px}
 .portfolio .lbl{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--mute);
   display:block;margin-bottom:8px}
@@ -381,8 +405,17 @@ TEMPLATE = """<!DOCTYPE html>
     </ol>
   </section>
 
+  <section class="sec wrap reveal" id="how" aria-labelledby="how-h" style="--d:0">
+    <div class="sec-head"><h2 id="how-h">{p5[title]}</h2><span class="mark">04 / HOW WE WORK</span></div>
+    <p class="lead">{p5lead}</p>
+    <ol class="steps">
+{howsteps}
+    </ol>
+    <p class="closer">{p5closer}</p>
+  </section>
+
   <section class="sec wrap reveal" id="why" aria-labelledby="why-h" style="--d:0">
-    <div class="sec-head"><h2 id="why-h">{p5[title]}</h2><span class="mark">04 / WHY ME</span></div>
+    <div class="sec-head"><h2 id="why-h">{p6[title]}</h2><span class="mark">05 / WHY ME</span></div>
     <ul class="claims">
 {claims}
     </ul>
@@ -391,17 +424,17 @@ TEMPLATE = """<!DOCTYPE html>
   </section>
 
   <section class="sec wrap reveal" id="next" aria-labelledby="next-h" style="--d:0">
-    <div class="sec-head"><h2 id="next-h">{p6[title]}</h2><span class="mark">05 / FIRST STEP</span></div>
-    <h3>{p6[q_title]}</h3>
+    <div class="sec-head"><h2 id="next-h">{p7[title]}</h2><span class="mark">06 / FIRST STEP</span></div>
+    <h3>{p7[q_title]}</h3>
     <ul class="qs">
 {questions}
     </ul>
-    <p>{p6[para]}</p>
+    <p>{p7[para]}</p>
   </section>
 
   <section class="band-ink" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
-      <div class="sec-head"><h2 id="contact-h">{contact[agency]}</h2><span class="mark">06 / CONTACT</span></div>
+      <div class="sec-head"><h2 id="contact-h">{contact[agency]}</h2><span class="mark">07 / CONTACT</span></div>
       <a class="mail" href="mailto:{contact[mail]}">{contact[mail]}</a>
       <div class="cmeta">
         <div>{contact[city]}</div>
@@ -441,13 +474,18 @@ def render(d: dict) -> str:
     steps = "\n".join(
         f'      <li class="step"><p class="label">{esc(s["label"])}</p><h3>{esc(s["title"])}</h3>\n'
         f'        <p>{esc(" ".join(s["body"]))}</p></li>' for s in d["p4"]["steps"])
+    howsteps = "\n".join(
+        f'      <li class="step"><p class="label">{s["ix"]:02d}</p><h3>{esc(s["title"])}</h3>\n'
+        f'        <p>{esc(s["body"])}</p></li>' for s in d["p5"]["steps"])
+    p5lead = f'<b>{esc(d["p5"]["lead"]["lead"])}</b> {esc(d["p5"]["lead"]["body"])}'
+    p5closer = f'<b>{esc(d["p5"]["closer"]["lead"])}</b> {esc(d["p5"]["closer"]["body"])}'
     claims = "\n".join(
-        f'      <li><h3>{esc(cl["title"])}</h3><p>{esc(cl["body"])}</p></li>' for cl in d["p5"]["claims"])
+        f'      <li><h3>{esc(cl["title"])}</h3><p>{esc(cl["body"])}</p></li>' for cl in d["p6"]["claims"])
     questions = "\n".join(
-        f'      <li><span>{esc(q)}</span></li>' for q in d["p6"]["questions"])
+        f'      <li><span>{esc(q)}</span></li>' for q in d["p7"]["questions"])
     toc_items = [(2, d["p2"]["title"]), (3, d["p3"]["title"]), (4, d["p4"]["title"]),
-                 (5, d["p5"]["title"]), (6, d["p6"]["title"])]
-    ids = {2: "position", 3: "offer", 4: "rollout", 5: "why", 6: "next"}
+                 (5, d["p5"]["title"]), (6, d["p6"]["title"]), (7, d["p7"]["title"])]
+    ids = {2: "position", 3: "offer", 4: "rollout", 5: "how", 6: "why", 7: "next"}
     toc = "\n".join(f'      <li><a href="#{ids[n]}"><span class="n">{i:02d}</span><span>{esc(t)}</span></a></li>'
                     for i, (n, t) in enumerate(toc_items, start=1))
 
@@ -457,11 +495,12 @@ def render(d: dict) -> str:
         css=CSS, skip="მთავარ შიგთავსზე გადასვლა", h1=esc(c["h1"]), sub=esc(c["sub"]),
         figures=figures, quote=quote, sig_name=esc(c["sig"]["name"]), sig_role=esc(c["sig"]["role"]),
         btn_offer=esc(d["p3"]["title"].split(":", 1)[1].strip()),
-        btn_next=esc(d["p6"]["title"]),
+        btn_next=esc(d["p7"]["title"]),
         toc_label="გვერდის სექციები", toc=toc,
         p2=d["p2"], p2items=p2items, p3=d["p3"], p3items=p3items, p4=d["p4"], steps=steps,
-        p5=d["p5"], claims=claims, portfolio_label=esc(d["p5"]["portfolio"]["label"]),
-        portfolio_url=d["p5"]["portfolio"]["url"], p6=d["p6"], questions=questions,
+        p5=d["p5"], p5lead=p5lead, p5closer=p5closer, howsteps=howsteps,
+        claims=claims, portfolio_label=esc(d["p6"]["portfolio"]["label"]),
+        portfolio_url=d["p6"]["portfolio"]["url"], p6=d["p6"], p7=d["p7"], questions=questions,
         contact=d["contact"], domain=esc("alliance.sitech.ge"), new_window="(ახალი ფანჯარა)")
 
 
@@ -471,10 +510,10 @@ def main() -> int:
     OUT.write_text(page, encoding="utf-8")
     print(f"written {OUT}  {len(page.encode('utf-8'))} bytes")
     print(f"cover h1: {data['cover']['h1']!r}")
-    print(f"sections: {[data[k]['title'] for k in ('p2','p3','p4','p5','p6')]}")
+    print(f"sections: {[data[k]['title'] for k in ('p2','p3','p4','p5','p6','p7')]}")
     print(f"counts: figures={len(data['cover']['figures'])} position={len(data['p2']['items'])} "
-          f"offer={len(data['p3']['items'])} steps={len(data['p4']['steps'])} claims={len(data['p5']['claims'])} "
-          f"questions={len(data['p6']['questions'])}")
+          f"offer={len(data['p3']['items'])} steps={len(data['p4']['steps'])} how={len(data['p5']['steps'])} "
+          f"claims={len(data['p6']['claims'])} questions={len(data['p7']['questions'])}")
     return 0
 
 

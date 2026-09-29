@@ -174,8 +174,8 @@ for w, d in results.items():
     off = [u for u in requests[w] if not u.startswith("file:")]
     if off:
         problems.append(f"{w}px: external requests: {off[:3]}")
-    if len(d["sections"]) != 6:
-        problems.append(f"{w}px: expected 6 sections, found {[s['id'] for s in d['sections']]}")
+    if [s["id"] for s in d["sections"]] != ["position", "offer", "rollout", "how", "why", "next", "contact"]:
+        problems.append(f"{w}px: section inventory/order wrong: {[s['id'] for s in d['sections']]}")
     if not d["footer"]:
         problems.append(f"{w}px: no footer text")
     if d["doc"]["scrollH"] < 3000:
@@ -235,4 +235,5 @@ if problems:
         print("  FAIL", p)
     sys.exit(1)
 print("PASS: no horizontal overflow or clipped leaf, no viewport clipping, no console error, "
-      "no external request, 6 sections + cover + footer render at every width")
+      "no external request, 7 sections (position/offer/rollout/how/why/next/contact) + cover + footer "
+      "render at every width")

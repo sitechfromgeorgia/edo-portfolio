@@ -139,7 +139,7 @@ def main() -> int:
           "header/main/footer/nav landmarks")
     check(all(ref in ids for _, ref in secs), "every aria-labelledby resolves to an id",
           f"{len(secs)} sections: {[s for s, _ in secs]}")
-    check(len(secs) == 6, "six labelled sections in main", str(len(secs)))
+    check(len(secs) == 7, "seven labelled sections in main", str(len(secs)))
     check('class="skip"' in html and 'href="#main"' in html, "skip link")
     check("prefers-reduced-motion" in style, "prefers-reduced-motion handling")
     check(":focus-visible" in style, "focus-visible styling")
